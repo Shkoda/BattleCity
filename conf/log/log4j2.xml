@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="error">
+    <appenders>
+        <Console name="consoleErr" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} :: %-5level :: %msg%n%ex{full}"/>
+        </Console>
+
+        <Console name="consoleDebug" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{DATE}: %-5level -> %F:%L  %m%n"/>
+        </Console>
+
+    </appenders>
+    <Loggers>
+        <Root level="debug" additivity="false">
+            <AppenderRef ref="consoleDebug"/>
+        </Root>
+
+        <Logger name="exception_logger" additivity="false" level="error">
+            <AppenderRef ref="consoleErr"/>
+        </Logger>
+
+        <Logger name="debug_logger" additivity="false" level="debug">
+            <AppenderRef ref="consoleDebug"/>
+        </Logger>
+
+    </Loggers>
+</configuration>
+
+
