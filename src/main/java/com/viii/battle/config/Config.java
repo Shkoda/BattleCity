@@ -1,12 +1,7 @@
-package com.pelican.battle.server.config;
+package com.viii.battle.config;
 
-import com.pelican.battle.server.utils.DiskUtils;
-import com.pelican.battle.server.utils.gson.GsonUtils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.viii.battle.utils.DiskUtils;
+import com.viii.battle.utils.gson.GsonUtils;
 
 /**
  * Created by Artem

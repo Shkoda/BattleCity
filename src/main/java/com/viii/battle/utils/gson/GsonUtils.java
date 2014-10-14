@@ -1,4 +1,4 @@
-package com.pelican.battle.server.utils.gson;
+package com.viii.battle.utils.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

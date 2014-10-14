@@ -1,6 +1,5 @@
-package com.pelican.battle.server.config;
+package com.viii.battle.config;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.ToString;
 
 /**

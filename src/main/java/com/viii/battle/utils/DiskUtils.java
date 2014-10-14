@@ -1,4 +1,4 @@
-package com.pelican.battle.server.utils;
+package com.viii.battle.utils;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;

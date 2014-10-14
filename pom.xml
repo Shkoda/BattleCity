@@ -67,7 +67,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.pelican.battle.server.server.Server</mainClass>
+                            <mainClass>com.viii.battle.server.Server</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

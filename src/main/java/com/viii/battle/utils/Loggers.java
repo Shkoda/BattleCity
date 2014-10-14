@@ -1,4 +1,4 @@
-package com.pelican.battle.server.utils;
+package com.viii.battle.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

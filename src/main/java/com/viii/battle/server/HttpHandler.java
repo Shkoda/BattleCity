@@ -1,6 +1,5 @@
-package com.pelican.battle.server.server;
+package com.viii.battle.server;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.ssl.SslHandler;
