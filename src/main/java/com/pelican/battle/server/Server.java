@@ -5,6 +5,6 @@ package com.pelican.battle.server;
  */
 public class Server {
     public static void main(String[] args) {
-        System.out.println("It's time to start");
+        System.out.println("It's time to start 2");
     }
 }
