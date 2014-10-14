@@ -1,6 +1,9 @@
 package com.viii.battle.server;
 
 import com.viii.battle.config.Config;
+import com.viii.battle.server.pipeline.LogicHandler;
+import com.viii.battle.server.pipeline.PacketDecoder;
+import com.viii.battle.server.pipeline.PacketEncoder;
 import com.viii.battle.utils.Loggers;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -17,8 +20,9 @@ public class Server {
     public static void run() throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1); // (1)
         EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+        PacketEncoder ENCODER = new PacketEncoder();
 
-        try {
+        try{
             ServerBootstrap b = new ServerBootstrap(); // (2)
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class) // (3)
@@ -26,20 +30,19 @@ public class Server {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-
-                            pipeline.addLast("decoder", new HttpRequestDecoder());
-                            pipeline.addLast("encoder", new HttpResponseEncoder());
-
-                            pipeline.addLast("handler", new HttpHandler(!Config.DEBUG_MODE));
+                            pipeline.addLast("decoder", new PacketDecoder());
+                            pipeline.addLast("encoder", ENCODER);
+                            pipeline.addLast("handler", new LogicHandler());
                         }
                     })
-                    .option(ChannelOption.SO_BACKLOG, 128)
+                    .option(ChannelOption.SO_BACKLOG, 512)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.SO_KEEPALIVE, true)// (5)
                     .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
 
             // Bind and start to accept incoming connections.
-            int port =  Config.server.port ;
+//            int port = Config.DEBUG_MODE ? Config.server.port : Config.server.portSSL;
+            int port = Config.server.port;
             ChannelFuture f = b.bind(port).sync(); // (7)
 
             System.out.println("Server was started successfully on port " + port);
@@ -55,7 +58,6 @@ public class Server {
 
     public static void init() throws Exception {
         Config.load();
-
     }
 
 
