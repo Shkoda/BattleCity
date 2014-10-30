@@ -19,11 +19,10 @@ public class PacketEncoder extends MessageToByteEncoder<AbstractMessageBuilder> 
 
     @Override
     protected void encode(ChannelHandlerContext ctx, AbstractMessageBuilder msg, ByteBuf out) throws Exception {
-        Loggers.debugLogger.debug("write message...");
+
         out.writeByte(MessageType.fromClass(msg.getClass()).getByteValue());
         byte[] data = msg.getBytes();
         out.writeInt(data.length);
         out.writeBytes(data);
-        Loggers.debugLogger.debug(Arrays.toString(data));
     }
 }

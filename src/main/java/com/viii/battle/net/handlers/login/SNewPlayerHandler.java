@@ -1,5 +1,6 @@
 package com.viii.battle.net.handlers.login;
 
+import com.viii.battle.controller.RoomManager;
 import com.viii.battle.entity.player.Player;
 import com.viii.battle.entity.session.SessionWorker;
 import com.viii.battle.net.handlers.IncomingMessageHandler;
@@ -29,7 +30,7 @@ public class SNewPlayerHandler extends IncomingMessageHandler {
         Protocol.CNewPlayer.Builder response = Protocol.CNewPlayer.Builder.create()
                 .setPlayerInfo(player.info())
                 .addAllOnlinePlayers(SessionManager.listPlayers())
-                .addAllRooms(SessionManager.listRooms());
+                .addAllRooms(RoomManager.listRooms());
         sessionWorker.write(response);
     }
 }

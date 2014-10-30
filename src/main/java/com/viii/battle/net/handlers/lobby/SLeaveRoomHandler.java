@@ -1,5 +1,6 @@
 package com.viii.battle.net.handlers.lobby;
 
+import com.viii.battle.controller.RoomManager;
 import com.viii.battle.entity.session.SessionWorker;
 import com.viii.battle.net.handlers.IncomingMessageHandler;
 import com.viii.battle.net.protocol.Protocol;
@@ -22,6 +23,6 @@ public class SLeaveRoomHandler extends IncomingMessageHandler {
 
     @Override
     public void handle(SessionWorker sessionWorker) throws Exception {
-
+        sessionWorker.write(Protocol.CLeaveRoom.Builder.create().setSuccessful(RoomManager.leaveRoom(sessionWorker.getPlayer())));
     }
 }

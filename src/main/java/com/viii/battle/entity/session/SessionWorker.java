@@ -1,6 +1,7 @@
 package com.viii.battle.entity.session;
 
 import com.viii.battle.entity.player.Player;
+import com.viii.battle.net.protocol.MessageType;
 import com.viii.battle.utils.Loggers;
 import io.netty.channel.Channel;
 import ortobuf.core.AbstractMessageBuilder;
@@ -27,12 +28,13 @@ public class SessionWorker {
         return player;
     }
 
-    public void disconnectChannel(){
+    public void disconnectChannel() {
         channel.disconnect();
     }
 
-    public void write(AbstractMessageBuilder packet){
-        Loggers.debugLogger.debug("Writing message... "+packet );
+    public void write(AbstractMessageBuilder packet) {
+        MessageType type = MessageType.fromClass(packet.getClass());
+        Loggers.debugLogger.debug(" << " + type);
         channel.write(packet);
         channel.flush();
     }

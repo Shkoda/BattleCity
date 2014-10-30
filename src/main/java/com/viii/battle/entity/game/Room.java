@@ -1,5 +1,6 @@
 package com.viii.battle.entity.game;
 
+import com.viii.battle.controller.RoomManager;
 import com.viii.battle.entity.player.Player;
 import com.viii.battle.net.protocol.Protocol;
 import com.viii.battle.server.SessionManager;
@@ -31,19 +32,19 @@ public class Room implements ProtocolObject<Protocol.RoomInfo.Builder> {
         players.add(owner);
     }
 
-    public boolean addPlayer(Player player) {
+    public boolean join(Player player) {
         if (isFull() || inRoom(player))
             return false;
         players.add(player);
         return true;
     }
 
-    public boolean removePlayer(Player player){
+    public boolean leave(Player player){
         if (!inRoom(player))
             return false;
         players.remove(player);
         if (players.isEmpty())
-            SessionManager.removeRoom(this);
+            RoomManager.removeRoom(this);
         return true;
     }
 
@@ -53,6 +54,10 @@ public class Room implements ProtocolObject<Protocol.RoomInfo.Builder> {
 
     public boolean inRoom(Player player) {
         return players.contains(player);
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.viii.battle.net.handlers.lobby;
 
+import com.viii.battle.controller.RoomManager;
 import com.viii.battle.entity.session.SessionWorker;
 import com.viii.battle.net.handlers.IncomingMessageHandler;
 import com.viii.battle.net.protocol.Protocol;
@@ -23,6 +24,6 @@ public class SGetRoomsHandler extends IncomingMessageHandler {
 
     @Override
     public void handle(SessionWorker sessionWorker) throws Exception {
-        sessionWorker.write(Protocol.CGetRooms.Builder.create().addAllRooms(SessionManager.listRooms()));
+        sessionWorker.write(Protocol.CGetRooms.Builder.create().addAllRooms(RoomManager.listRooms()));
     }
 }
