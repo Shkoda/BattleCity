@@ -28,7 +28,7 @@ public class LogicHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         Loggers.debugLogger.debug("exception on: " + ctx.channel());
-        cause.printStackTrace();
+//        cause.printStackTrace();
     }
 
     @Override

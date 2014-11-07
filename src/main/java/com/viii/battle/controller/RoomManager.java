@@ -25,6 +25,10 @@ public class RoomManager {
                 .collect(Collectors.toList());
     }
 
+    public static List<Room> getRooms(){
+        return rooms;
+    }
+
     public static Protocol.RoomInfo.Builder createRoom(Player owner, int capacity) {
         if (owner.getState() != Protocol.PlayerState.IN_LOBBY)
             return null;

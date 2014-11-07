@@ -31,7 +31,9 @@ public class Player implements ProtocolObject<Protocol.PlayerInfo.Builder> {
                 .setState(state);
     }
 
-
+    public int getId() {
+        return id;
+    }
 
     public Protocol.PlayerState getState() {
         return state;

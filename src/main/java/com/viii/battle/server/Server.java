@@ -1,6 +1,7 @@
 package com.viii.battle.server;
 
 import com.viii.battle.config.Config;
+import com.viii.battle.debug.Bots;
 import com.viii.battle.server.pipeline.LogicHandler;
 import com.viii.battle.server.pipeline.PacketDecoder;
 import com.viii.battle.server.pipeline.PacketEncoder;
@@ -58,6 +59,7 @@ public class Server {
 
     public static void init() throws Exception {
         Config.load();
+        Bots.startBots(10);
     }
 
 

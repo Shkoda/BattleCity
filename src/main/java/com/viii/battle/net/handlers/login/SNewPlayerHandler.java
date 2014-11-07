@@ -6,6 +6,7 @@ import com.viii.battle.entity.session.SessionWorker;
 import com.viii.battle.net.handlers.IncomingMessageHandler;
 import com.viii.battle.net.protocol.Protocol;
 import com.viii.battle.server.SessionManager;
+import com.viii.battle.utils.Loggers;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class SNewPlayerHandler extends IncomingMessageHandler {
 
     @Override
     public void handle(SessionWorker sessionWorker) throws Exception {
+        Loggers.debugLogger.debug("Creating new Player "+packet.name);
         Player player = new Player(packet.name);
         sessionWorker.setPlayer(player);
         Protocol.CNewPlayer.Builder response = Protocol.CNewPlayer.Builder.create()
@@ -32,6 +34,7 @@ public class SNewPlayerHandler extends IncomingMessageHandler {
                 .addAllOnlinePlayers(SessionManager.listPlayers())
                 .addAllRooms(RoomManager.listRooms());
         sessionWorker.write(response);
+
     }
 }
 
